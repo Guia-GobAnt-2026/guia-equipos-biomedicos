@@ -410,6 +410,6 @@ with tabs[3]:
 
     if "validacion_clinica" in ficha:
         st.markdown(
-            f'<div class="card"><div class="card-title">Validacion clinica</div>{ficha["normas_sobre_la_validacion_clinica"]}</div>',
+            f'<div class="card"><div class="card-title">Validacion clinica</div>{ficha["validacion_clinica"]}</div>',
             unsafe_allow_html=True,
         )
