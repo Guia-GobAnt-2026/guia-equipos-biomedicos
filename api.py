@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
-import re
-import unicodedata
+import re #Ubica textos 
+import unicodedata #Quita tíldes y caracteres especiales
 
-import pandas as pd
-import streamlit as st
+import pandas as pd #Maneja los datos como tablas
+import streamlit as st #Framework que crea la web
 
-
+#Título de la pestaña dle navegador y su ancho:
 st.set_page_config(
-    page_title="Guía Técnica Biomédica",
+    page_title="Guía Técnica Biomédica", 
     layout="wide",
 )
 
-
-st.markdown(
+#Bloque de apariencia visual 
+st.markdown( 
     """
 <style>
     .stApp {
@@ -174,10 +174,10 @@ st.markdown(
     }
 </style>
 """,
-    unsafe_allow_html=True,
+    unsafe_allow_html=True, #permite que se use el texto (HTML) y el diseño (CSS) personalizado
 )
 
-
+#Diseño del panel superior (verde)
 st.markdown(
     """
     <div class="header-panel">
@@ -192,14 +192,14 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-
+#Función para normalizar los nombres de las columnas del excel
 def limpiar(texto):
     texto = unicodedata.normalize("NFKD", str(texto)).encode("ascii", "ignore").decode("ascii")
     texto = texto.lower().strip()
     texto = re.sub(r"[^a-z0-9]+", "_", texto)
     return texto
 
-
+#Convierte texto de seguido en lista
 def formatear_lista(texto):
     if pd.isna(texto):
         return ""
@@ -209,7 +209,7 @@ def formatear_lista(texto):
 
     for linea in lineas:
         linea = linea.strip()
-        linea = re.sub(r"^\d+\.\s*", "", linea)
+        linea = re.sub(r"^\d+\.\s*", "", linea) #Aquí elimina la numeración de las espec. para ponerlos en viñetas
         if linea:
             items.append(f"<li>{linea}</li>")
 
@@ -218,7 +218,7 @@ def formatear_lista(texto):
 
     return f'<ul class="bullet-list">{"".join(items)}</ul>'
 
-
+#Cambia los asteriscos por saltos de línea (se usaba en las normas)
 def formatear_normas(texto):
     if pd.isna(texto):
         return ""
@@ -237,7 +237,7 @@ def formatear_normas(texto):
         return intro + "\n\n" + "\n".join(bullets)
     return intro
 
-
+#Convierte las comas en saltos de línea, en la columna de servicios
 def formatear_servicios(texto):
     if pd.isna(texto):
         return ""
@@ -255,8 +255,8 @@ def formatear_servicios(texto):
         return intro + "\n\n" + "\n".join(bullets)
     return intro
 
-
-@st.cache_data(ttl=60)
+#Conexión con google sheets para importar los datos 
+@st.cache_data(ttl=60) #Significa que cada 60s se trae la info de la tabla 
 def cargar_datos():
     url = "https://docs.google.com/spreadsheets/d/1Hav7p3RYY0FjdN3ztwo-4mWa382xPzpqZDHpwZGmXok/export?format=csv"
     df = pd.read_csv(url, engine="python")
@@ -266,7 +266,7 @@ def cargar_datos():
 
 df = cargar_datos()
 
-
+#Diseño del buscador desplegable 
 st.markdown(
     """
     <div class="selector-card">
@@ -278,7 +278,7 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
-
+#Selector de equipo
 equipo = st.selectbox(
     "Comience a escribir el nombre del equipo",
     sorted(df["nombre"].dropna().unique()),
@@ -307,7 +307,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-
+#Creación de las pestañas 
 tabs = st.tabs(
     [
         "Información general",
@@ -317,7 +317,8 @@ tabs = st.tabs(
     ]
 )
 
-
+#Busca y muestra la info de cada pestaña del equipo seleccionado 
+#Para Información general:
 with tabs[0]:
     if "codigo_gmdn" in ficha:
         st.markdown(
@@ -344,7 +345,7 @@ with tabs[0]:
             unsafe_allow_html=True,
         )
 
-
+#Para requisitos técnicos:
 with tabs[1]:
     if "especificaciones_tecnicas" in ficha:
         texto = formatear_lista(ficha["especificaciones_tecnicas"])
@@ -365,7 +366,7 @@ with tabs[1]:
             unsafe_allow_html=True,
         )
 
-
+#Para gestión hospitalaria
 with tabs[2]:
     if "entrenamiento" in ficha:
         st.markdown(
@@ -385,7 +386,7 @@ with tabs[2]:
             unsafe_allow_html=True,
         )
 
-
+#Para información normativa 
 with tabs[3]:
     if "documentacion" in ficha:
         texto = formatear_normas(ficha["documentacion"])
