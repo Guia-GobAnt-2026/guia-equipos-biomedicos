@@ -181,7 +181,7 @@ st.markdown(
 st.markdown(
     """
     <div class="header-panel">
-        <div class="header-kicker">Secretaría de Salud e inlcusión Social de Antioquia</div>
+        <div class="header-kicker">Secretaría de Salud e inclusión Social de Antioquia</div>
         <div class="header-title">Guía Interactiva de Especificaciones Técnicas de Equipos Biomédicos</div>
         <div class="header-subtitle">
             Consulta para revisar la información técnica, operativa y normativa
