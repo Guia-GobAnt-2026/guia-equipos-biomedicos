@@ -272,16 +272,38 @@ st.markdown(
     <div class="selector-card">
         <div class="selector-title">Buscar equipo biomédico</div>
         <div class="selector-help">
-            Escribe o selecciona un equipo para ver su ficha técnica, gestión hospitalaria y marco normativo.
+            Selecciona primero la categoría del equipo y luego escribe o elige el equipo específico.
         </div>
     </div>
     """,
     unsafe_allow_html=True,
 )
-#Selector de equipo
+
+#Selector de tipo (categoría)
+if "tipo" in df.columns:
+    tipos_disponibles = sorted(df["tipo"].dropna().unique())
+else:
+    tipos_disponibles = []
+
+tipo_seleccionado = st.selectbox(
+    "Categoría",
+    tipos_disponibles,
+    index=None,
+    placeholder="Selecciona una categoría: Primer Nivel, Segundo Nivel, Mobiliario...",
+    label_visibility="collapsed",
+)
+
+if tipo_seleccionado is None:
+    st.info("Selecciona una categoría para continuar.")
+    st.stop()
+
+#Filtrar equipos por tipo seleccionado
+df_filtrado = df[df["tipo"] == tipo_seleccionado]
+
+#Selector de equipo (filtrado)
 equipo = st.selectbox(
     "Comience a escribir el nombre del equipo",
-    sorted(df["nombre"].dropna().unique()),
+    sorted(df_filtrado["nombre"].dropna().unique()),
     index=None,
     placeholder="Ej: Centrifuga, Agitador, Balanza...",
     label_visibility="collapsed",
