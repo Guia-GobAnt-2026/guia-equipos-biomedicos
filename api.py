@@ -37,9 +37,7 @@ st.markdown(
     }
 
     .header-kicker {
-        text-transform: uppercase;
-        letter-spacing: 0.18em;
-        font-size: 0.8rem;
+        font-size: 1rem;
         font-weight: 700;
         opacity: 0.85;
         margin-bottom: 12px;
@@ -55,6 +53,8 @@ st.markdown(
     .header-subtitle {
         font-size: 1rem;
         opacity: 0.95;
+        font-weight: 700;
+        opacity: 0.95;
         max-width: 780px;
     }
 
@@ -69,7 +69,7 @@ st.markdown(
     }
 
     .selector-title {
-        font-size: 1.1rem;
+        font-size: 1.5rem;
         font-weight: 700;
         color: #0d4728;
         margin-bottom: 6px;
