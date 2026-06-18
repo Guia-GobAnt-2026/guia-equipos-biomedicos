@@ -289,7 +289,7 @@ tipo_seleccionado = st.selectbox(
     "Categoría",
     tipos_disponibles,
     index=None,
-    placeholder="Selecciona una categoría: Primer Nivel, Segundo Nivel, Mobiliario...",
+    placeholder="Selecciona una categoría: Baja Complejidad, Mediana Complejidad, Mobiliario...",
     label_visibility="collapsed",
 )
 
