@@ -449,7 +449,7 @@ st.markdown(
     """
     <div class="footer">
         Guía elaborada por <strong>Juliana Preciado Carranza</strong> y <strong>Alejandro Correa Taborda</strong>
-        · Secretaría Seccional de Salud y Protección Social de Antioquia · 2026
+        · Secretaría Seccional de Salud e Inclusión Social de Antioquia · 2026
     </div>
     """,
     unsafe_allow_html=True,
