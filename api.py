@@ -68,7 +68,7 @@ st.markdown(
         backdrop-filter: blur(6px);
     }
 
-}
+
 
     .footer {
     text-align: center;
@@ -182,7 +182,7 @@ st.markdown(
         padding: 10px 16px;
         background: rgba(255, 255, 255, 0.7);
     
-    
+    }
 </style>
 """,
     unsafe_allow_html=True, #permite que se use el texto (HTML) y el diseño (CSS) personalizado
