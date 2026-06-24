@@ -172,6 +172,16 @@ st.markdown(
         padding: 10px 16px;
         background: rgba(255, 255, 255, 0.7);
     }
+
+    .footer {
+    text-align: center;
+    font-size: 0.82rem;
+    color: #7a9585;
+    margin-top: 40px;
+    padding: 16px 0 8px 0;
+    border-top: 1px solid rgba(0, 104, 55, 0.12);
+}
+    
 </style>
 """,
     unsafe_allow_html=True, #permite que se use el texto (HTML) y el diseño (CSS) personalizado
@@ -435,3 +445,12 @@ with tabs[3]:
             f'<div class="card"><div class="card-title">Validacion clinica</div>{ficha["validacion_clinica"]}</div>',
             unsafe_allow_html=True,
         )
+st.markdown(
+    """
+    <div class="footer">
+        Guía elaborada por <strong>Juliana Preciado Carranza</strong> y <strong>Alejandro Correa Taborda</strong>
+        · Secretaría Seccional de Salud y Protección Social de Antioquia · 2026
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
