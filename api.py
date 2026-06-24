@@ -68,6 +68,16 @@ st.markdown(
         backdrop-filter: blur(6px);
     }
 
+}
+
+    .footer {
+    text-align: center;
+    font-size: 0.82rem;
+    color: #7a9585;
+    margin-top: 40px;
+    padding: 16px 0 8px 0;
+    border-top: 1px solid rgba(0, 104, 55, 0.12);
+}
     .selector-title {
         font-size: 1.5rem;
         font-weight: 700;
@@ -171,16 +181,7 @@ st.markdown(
         border-radius: 999px;
         padding: 10px 16px;
         background: rgba(255, 255, 255, 0.7);
-    }
-
-    .footer {
-    text-align: center;
-    font-size: 0.82rem;
-    color: #7a9585;
-    margin-top: 40px;
-    padding: 16px 0 8px 0;
-    border-top: 1px solid rgba(0, 104, 55, 0.12);
-}
+    
     
 </style>
 """,
